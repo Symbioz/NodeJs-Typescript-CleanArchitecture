@@ -1,3 +1,1 @@
-export type SearchCountriesByAnimalsRequest = {
-  animalName: string
-}
+export type SearchCountriesByAnimalsRequest = string

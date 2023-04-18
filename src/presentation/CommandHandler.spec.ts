@@ -1,12 +1,21 @@
+import { resetAllWhenMocks, when } from 'jest-when'
+
 import { CommandHandler } from './CommandHandler'
 import type { Country } from '@entities/Country'
 import { SearchCountriesByAnimals } from 'src/searchCountriesByAnimals/SearchCountriesByAnimals'
-import { when } from 'jest-when'
 
 describe('Command handler test', () => {
-  const searchCountriesByAnimals = {
-    execute: jest.fn(),
-  } as jest.MockedObject<SearchCountriesByAnimals>
+  let searchCountriesByAnimals: jest.MockedObject<SearchCountriesByAnimals>
+
+  beforeEach(() => {
+    searchCountriesByAnimals = {
+      execute: jest.fn(),
+    } as jest.MockedObject<SearchCountriesByAnimals>
+  })
+
+  afterEach(() => {
+    resetAllWhenMocks()
+  })
 
   it('should do the searchCountriesByAnimals command', () => {
     // Given
@@ -42,5 +51,56 @@ describe('Command handler test', () => {
 
     // Then
     expect(result).toBe(expectedCountries)
+  })
+
+  it('should throw an error when command does not exist', () => {
+    // Given
+    const args: string[] = ['--unknown=test']
+
+    const commandHandler = new CommandHandler(args, searchCountriesByAnimals)
+    const usecaseSpy = jest.spyOn(searchCountriesByAnimals, 'execute')
+
+    // when
+    const handling = commandHandler.handle
+
+    // Then
+    expect(usecaseSpy).not.toBeCalled()
+    expect(() => handling()).toThrow(
+      new Error('Invalid arguments, command not found'),
+    )
+  })
+
+  it('should throw an error when arguments are not formatted', () => {
+    // Given
+    const args: string[] = ['filter=test']
+
+    const commandHandler = new CommandHandler(args, searchCountriesByAnimals)
+    const usecaseSpy = jest.spyOn(searchCountriesByAnimals, 'execute')
+
+    // when
+    const handling = commandHandler.handle
+
+    // Then
+    expect(usecaseSpy).not.toBeCalled()
+    expect(() => handling()).toThrow(
+      new Error("Invalid arguments, should start with '--'"),
+    )
+  })
+
+  it('should throw an error when send several arguments', () => {
+    // Given
+    const args: string[] = ['--filter=test', '--count']
+
+    const commandHandler = new CommandHandler(args, searchCountriesByAnimals)
+    const usecaseSpy = jest.spyOn(searchCountriesByAnimals, 'execute')
+
+    // when
+    const handling = commandHandler.handle
+
+    // Then
+    expect(usecaseSpy).not.toBeCalled()
+    expect(() => handling()).toThrow(
+      new Error('Invalid command, only one argument allow'),
+    )
   })
 })

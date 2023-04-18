@@ -15,6 +15,6 @@
       "@presentation/*": ["src/presentation/*"],
       "@infrastructure/*": ["src/infrastructure/*"]
     },
-    "types": ["jest"]
+    "types": ["jest", "node"]
   }
 }

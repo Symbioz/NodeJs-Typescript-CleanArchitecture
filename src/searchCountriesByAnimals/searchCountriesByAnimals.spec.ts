@@ -1,3 +1,4 @@
+import type { Country } from '@entities/Country'
 import { GetCountriesPort } from './GetCountriesPort'
 import { SearchCountriesByAnimals } from './SearchCountriesByAnimals'
 import { testData } from '../test/testData'
@@ -13,7 +14,7 @@ describe('search countries by animals usecase', () => {
   it('should return the right list of countries', () => {
     // Given
     const animalName = 'ry'
-    const expectedResult = [
+    const expectedResult: Country[] = [
       {
         name: 'Uzuzozne',
         people: [
@@ -44,7 +45,7 @@ describe('search countries by animals usecase', () => {
 
     // When
     getCountriesMock.getCountries.mockReturnValueOnce(testData)
-    const result = searchCountriesByAnimals.execute({ animalName })
+    const result = searchCountriesByAnimals.execute(animalName)
 
     // Then
     expect(result).toEqual(expectedResult)

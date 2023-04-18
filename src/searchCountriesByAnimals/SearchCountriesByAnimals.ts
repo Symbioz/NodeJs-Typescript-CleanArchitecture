@@ -10,7 +10,7 @@ export class SearchCountriesByAnimals
 {
   constructor(private readonly getCountriesPort: GetCountriesPort) {}
 
-  execute = ({ animalName }: SearchCountriesByAnimalsRequest): Country[] => {
+  execute = (animalNameFilter: SearchCountriesByAnimalsRequest): Country[] => {
     const countries = this.getCountriesPort.getCountries()
 
     // return countries.filter(country => country.people.some(people => people.animals.     ))
@@ -18,7 +18,7 @@ export class SearchCountriesByAnimals
     return countries.reduce((filteredCountries, currentCountry) => {
       const matchingAnimalPeople = this.getPeopleWithMatchingAnimal(
         currentCountry.people,
-        animalName,
+        animalNameFilter,
       )
 
       matchingAnimalPeople.length &&
