@@ -6,16 +6,16 @@ import { SearchCountriesByAnimalsRequest } from './SearchCountriesByAnimalsReque
 import { Usecase } from 'src/usecase/Usecase'
 
 export class SearchCountriesByAnimals
-  implements Usecase<SearchCountriesByAnimalsRequest, Country[]>
+  implements Usecase<SearchCountriesByAnimalsRequest, Country[] | void>
 {
   constructor(private readonly getCountriesPort: GetCountriesPort) {}
 
-  execute = (animalNameFilter: SearchCountriesByAnimalsRequest): Country[] => {
+  execute = (
+    animalNameFilter: SearchCountriesByAnimalsRequest,
+  ): Country[] | void => {
     const countries = this.getCountriesPort.getCountries()
 
-    // return countries.filter(country => country.people.some(people => people.animals.     ))
-
-    return countries.reduce((filteredCountries, currentCountry) => {
+    const result = countries.reduce((filteredCountries, currentCountry) => {
       const matchingAnimalPeople = this.getPeopleWithMatchingAnimal(
         currentCountry.people,
         animalNameFilter,
@@ -29,6 +29,10 @@ export class SearchCountriesByAnimals
 
       return filteredCountries
     }, [] as Country[])
+
+    if (result.length) {
+      return result
+    }
   }
 
   private getPeopleWithMatchingAnimal = (
