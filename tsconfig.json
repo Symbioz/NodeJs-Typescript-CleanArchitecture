@@ -9,6 +9,12 @@
     "noImplicitAny": true,
     "baseUrl": "./",
     "rootDir": "./src",
-    "outDir": "dist"
+    "outDir": "dist",
+    "paths": {
+      "@entities/*": ["src/entities/*"],
+      "@presentation/*": ["src/presentation/*"],
+      "@infrastructure/*": ["src/infrastructure/*"]
+    },
+    "types": ["jest", "node"]
   }
 }
