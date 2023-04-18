@@ -13,6 +13,10 @@ export class CommandHandler {
       throw new Error('Invalid command, only one argument allow')
     }
 
+    if (!this.args.length) {
+      throw new Error('Invalid command, at least one argument required')
+    }
+
     const formattedArgument = this.formatArgument(this.args[0])
 
     return this.handler[formattedArgument.command](
@@ -30,7 +34,7 @@ export class CommandHandler {
     arg: string,
   ): { command: Command; commandValue: string } => {
     if (arg.slice(0, 2) !== '--') {
-      throw new Error("Invalid arguments, should g with '--'")
+      throw new Error("Invalid arguments, should start with '--'")
     }
 
     const longArg = arg.split('=')

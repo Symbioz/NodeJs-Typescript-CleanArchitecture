@@ -125,4 +125,25 @@ describe('Command handler test', () => {
       new Error('Invalid command, only one argument allow'),
     )
   })
+
+  it('should throw an error when send no arguments', () => {
+    // Given
+    const args: string[] = []
+
+    const commandHandler = new CommandHandler(
+      args,
+      searchCountriesByAnimals,
+      countAnimalsAndPeople,
+    )
+    const usecaseSpy = jest.spyOn(searchCountriesByAnimals, 'execute')
+
+    // when
+    const handling = commandHandler.handle
+
+    // Then
+    expect(usecaseSpy).not.toBeCalled()
+    expect(() => handling()).toThrow(
+      new Error('Invalid command, at least one argument required'),
+    )
+  })
 })
