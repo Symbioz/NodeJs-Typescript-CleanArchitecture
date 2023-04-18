@@ -41,7 +41,7 @@ export const expectedResult: Country[] = [
         ],
       },
       {
-        name: 'Bobby Ristori [8]',
+        name: 'Bobby Ristori [9]',
         animals: [
           { name: 'Kowari' },
           { name: 'Caecilian' },
