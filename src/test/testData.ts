@@ -513,63 +513,6 @@ export const testData2: Country[] = [
           { name: 'African Wild Dog' },
         ],
       },
-      {
-        name: 'Alexander Fleury',
-        animals: [
-          { name: 'Gelada' },
-          { name: 'Rattlesnake' },
-          { name: 'Rabbit' },
-          { name: 'Aardvark' },
-          { name: 'Duck' },
-          { name: 'Courser' },
-          { name: 'Woodpecker' },
-        ],
-      },
-      {
-        name: 'Curtis Fuchs',
-        animals: [
-          { name: 'Squirrel' },
-          { name: 'Falcon' },
-          { name: 'Cat' },
-          { name: 'Lobe Coral' },
-          { name: 'Camel' },
-          { name: 'Broadclub Cuttlefish' },
-        ],
-      },
-      {
-        name: 'Maud Lorenzo',
-        animals: [
-          { name: 'Bush Dog' },
-          { name: 'Sea Urchin' },
-          { name: 'Gayal' },
-          { name: 'Tortoise' },
-          { name: 'Meerkat' },
-          { name: 'Lion' },
-          { name: 'Gecko' },
-        ],
-      },
-      {
-        name: 'Linnie Lamb',
-        animals: [
-          { name: 'Burro' },
-          { name: 'African Wild Dog' },
-          { name: 'Slender Snipe Eel' },
-          { name: 'Red Panda' },
-          { name: 'Baby Doll Sheep' },
-          { name: 'California Sea Lion' },
-          { name: 'Rabbits' },
-        ],
-      },
-      {
-        name: 'Randall Benoît',
-        animals: [
-          { name: 'Chameleons' },
-          { name: 'Bee-eater' },
-          { name: 'King Vulture' },
-          { name: 'Giant Isopod' },
-          { name: 'Sand Cat' },
-        ],
-      },
     ],
   },
 ]

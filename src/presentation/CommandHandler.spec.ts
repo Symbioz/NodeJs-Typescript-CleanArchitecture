@@ -1,16 +1,22 @@
 import { resetAllWhenMocks, when } from 'jest-when'
 
 import { CommandHandler } from './CommandHandler'
+import { CountAnimalsAndPeople } from './../countAnimalsAndPeople/CountAnimalsAndPeople'
 import type { Country } from '@entities/Country'
 import { SearchCountriesByAnimals } from 'src/searchCountriesByAnimals/SearchCountriesByAnimals'
 
 describe('Command handler test', () => {
   let searchCountriesByAnimals: jest.MockedObject<SearchCountriesByAnimals>
+  let countAnimalsAndPeople: jest.MockedObject<CountAnimalsAndPeople>
 
   beforeEach(() => {
     searchCountriesByAnimals = {
       execute: jest.fn(),
     } as jest.MockedObject<SearchCountriesByAnimals>
+
+    countAnimalsAndPeople = {
+      execute: jest.fn(),
+    } as jest.MockedObject<CountAnimalsAndPeople>
   })
 
   afterEach(() => {
@@ -40,7 +46,11 @@ describe('Command handler test', () => {
       },
     ]
 
-    const commandHandler = new CommandHandler(args, searchCountriesByAnimals)
+    const commandHandler = new CommandHandler(
+      args,
+      searchCountriesByAnimals,
+      countAnimalsAndPeople,
+    )
 
     // When
     when(searchCountriesByAnimals.execute)
@@ -57,7 +67,11 @@ describe('Command handler test', () => {
     // Given
     const args: string[] = ['--unknown=test']
 
-    const commandHandler = new CommandHandler(args, searchCountriesByAnimals)
+    const commandHandler = new CommandHandler(
+      args,
+      searchCountriesByAnimals,
+      countAnimalsAndPeople,
+    )
     const usecaseSpy = jest.spyOn(searchCountriesByAnimals, 'execute')
 
     // when
@@ -74,7 +88,11 @@ describe('Command handler test', () => {
     // Given
     const args: string[] = ['filter=test']
 
-    const commandHandler = new CommandHandler(args, searchCountriesByAnimals)
+    const commandHandler = new CommandHandler(
+      args,
+      searchCountriesByAnimals,
+      countAnimalsAndPeople,
+    )
     const usecaseSpy = jest.spyOn(searchCountriesByAnimals, 'execute')
 
     // when
@@ -91,7 +109,11 @@ describe('Command handler test', () => {
     // Given
     const args: string[] = ['--filter=test', '--count']
 
-    const commandHandler = new CommandHandler(args, searchCountriesByAnimals)
+    const commandHandler = new CommandHandler(
+      args,
+      searchCountriesByAnimals,
+      countAnimalsAndPeople,
+    )
     const usecaseSpy = jest.spyOn(searchCountriesByAnimals, 'execute')
 
     // when

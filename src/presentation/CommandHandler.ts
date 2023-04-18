@@ -1,9 +1,11 @@
 import { Command } from './Command'
+import { CountAnimalsAndPeople } from './../countAnimalsAndPeople/CountAnimalsAndPeople'
 import { SearchCountriesByAnimals } from './../searchCountriesByAnimals/SearchCountriesByAnimals'
 export class CommandHandler {
   constructor(
     private readonly args: string[],
     private readonly searchCountriesByAnimals: SearchCountriesByAnimals,
+    private readonly countAnimalsAndPeople: CountAnimalsAndPeople,
   ) {}
 
   handle = () => {
@@ -21,13 +23,14 @@ export class CommandHandler {
   private handler = {
     [Command.SEARCH_COUNTRIES_BY_ANIMALS]:
       this.searchCountriesByAnimals.execute,
+    [Command.COUNT_ANIMALS_AND_PEOPLE]: this.countAnimalsAndPeople.execute,
   }
 
   private formatArgument = (
     arg: string,
   ): { command: Command; commandValue: string } => {
     if (arg.slice(0, 2) !== '--') {
-      throw new Error("Invalid arguments, should start with '--'")
+      throw new Error("Invalid arguments, should g with '--'")
     }
 
     const longArg = arg.split('=')
@@ -39,7 +42,7 @@ export class CommandHandler {
       throw new Error('Invalid arguments, command not found')
     }
 
-    const commandValue = longArg.length > 1 ? longArg[1] : ''
+    const commandValue = this.extractParams(longArg)
     return { command, commandValue }
   }
 
@@ -47,5 +50,9 @@ export class CommandHandler {
     return Object.values<string>(Command).includes(command)
       ? (command as Command)
       : undefined
+  }
+
+  private extractParams = (longArg: string[]) => {
+    return longArg.length > 1 ? longArg[1] : ''
   }
 }
