@@ -50,4 +50,16 @@ describe('search countries by animals usecase', () => {
     // Then
     expect(result).toEqual(expectedResult)
   })
+
+  it('should not return empty array when no countries are found', () => {
+    // Given
+    const animalName = 'no-matching-animals'
+
+    // When
+    getCountriesMock.getCountries.mockReturnValueOnce(testData)
+    const result = searchCountriesByAnimals.execute(animalName)
+
+    // Then
+    expect(result).toEqual(undefined)
+  })
 })
