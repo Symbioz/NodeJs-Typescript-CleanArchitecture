@@ -1,4 +1,4 @@
-import { Country } from '@entities/Country'
+import type { Country } from '@entities/Country'
 
 export const data: Country[] = [
   {

@@ -1,4 +1,4 @@
-import { Animal } from './Animal'
+import type { Animal } from './Animal'
 
 export type Person = {
   name: string

@@ -1,7 +1,7 @@
 import type { Country } from '@entities/Country'
 import { GetCountriesPort } from './GetCountriesPort'
 import { SearchCountriesByAnimals } from './SearchCountriesByAnimals'
-import { testData } from '../test/testData'
+import { testData1 } from '../test/testData'
 
 describe('search countries by animals usecase', () => {
   const getCountriesMock: jest.MockedObject<GetCountriesPort> = {
@@ -37,6 +37,9 @@ describe('search countries by animals usecase', () => {
               {
                 name: 'Oryx',
               },
+              {
+                name: 'Ota-ry',
+              },
             ],
           },
         ],
@@ -44,7 +47,7 @@ describe('search countries by animals usecase', () => {
     ]
 
     // When
-    getCountriesMock.getCountries.mockReturnValueOnce(testData)
+    getCountriesMock.getCountries.mockReturnValueOnce(testData1)
     const result = searchCountriesByAnimals.execute(animalName)
 
     // Then
@@ -56,7 +59,7 @@ describe('search countries by animals usecase', () => {
     const animalName = 'no-matching-animals'
 
     // When
-    getCountriesMock.getCountries.mockReturnValueOnce(testData)
+    getCountriesMock.getCountries.mockReturnValueOnce(testData1)
     const result = searchCountriesByAnimals.execute(animalName)
 
     // Then

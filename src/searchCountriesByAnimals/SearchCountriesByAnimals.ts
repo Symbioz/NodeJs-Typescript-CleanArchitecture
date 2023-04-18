@@ -1,9 +1,9 @@
-import { Animal } from '@entities/Animal'
-import { Country } from '@entities/Country'
+import type { Animal } from '@entities/Animal'
+import type { Country } from '@entities/Country'
 import { GetCountriesPort } from './GetCountriesPort'
-import { Person } from '@entities/Person'
+import type { Person } from '@entities/Person'
 import { SearchCountriesByAnimalsRequest } from './SearchCountriesByAnimalsRequest'
-import { Usecase } from 'src/usecase/Usecase'
+import type { Usecase } from 'src/usecase/Usecase'
 
 export class SearchCountriesByAnimals
   implements Usecase<SearchCountriesByAnimalsRequest, Country[] | void>
