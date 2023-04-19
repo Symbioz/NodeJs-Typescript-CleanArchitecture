@@ -12,10 +12,13 @@ export class CountAnimalsAndPeople implements Usecase<undefined, Country[]> {
     return countries.map(this.mapCountryToCountryWithCount)
   }
 
-  private mapCountryToCountryWithCount = (country: Country): Country => {
+  private mapCountryToCountryWithCount = ({
+    name,
+    people,
+  }: Country): Country => {
     return {
-      name: `${country.name} [${country.people.length}]`,
-      people: country.people.map(this.mapPeopleToPeopleWithCount),
+      name: `${name} [${people.length}]`,
+      people: people.map(this.mapPeopleToPeopleWithCount),
     }
   }
 

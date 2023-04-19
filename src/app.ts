@@ -14,4 +14,5 @@ const commandHandler = new CommandHandler(
   countAnimalsAndPeople,
 )
 
+// eslint-disable-next-line no-console
 console.dir(commandHandler.handle(), { depth: null, colors: true })

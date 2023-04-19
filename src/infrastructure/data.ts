@@ -1,5 +1,6 @@
 import type { Country } from '@entities/Country'
 
+// eslint-disable-next-line id-denylist
 export const data: Country[] = [
   {
     name: 'Dillauti',

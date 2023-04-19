@@ -8,7 +8,7 @@ export class CommandHandler {
     private readonly countAnimalsAndPeople: CountAnimalsAndPeople,
   ) {}
 
-  handle = () => {
+  handle = (): unknown => {
     if (this.args.length > 1) {
       throw new Error('Invalid command, only one argument allow')
     }
@@ -33,7 +33,7 @@ export class CommandHandler {
   private formatArgument = (
     arg: string,
   ): { command: Command; commandValue: string } => {
-    if (arg.slice(0, 2) !== '--') {
+    if (this.isCorrectlyFormatted(arg)) {
       throw new Error("Invalid arguments, should start with '--'")
     }
 
@@ -56,7 +56,11 @@ export class CommandHandler {
       : undefined
   }
 
-  private extractParams = (longArg: string[]) => {
+  private extractParams = (longArg: string[]): string => {
     return longArg.length > 1 ? longArg[1] : ''
+  }
+
+  private isCorrectlyFormatted = (arg: string): boolean => {
+    return arg.slice(0, 2) !== '--'
   }
 }

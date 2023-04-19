@@ -1,6 +1,7 @@
+import { Country } from '@entities/Country'
 import { GetCountriesPort } from 'src/searchCountriesByAnimals/GetCountriesPort'
-import { data } from './data'
+import { data as countries } from './data'
 
 export class CountryRepository implements GetCountriesPort {
-  getCountries = () => data
+  getCountries = (): Country[] => countries
 }
