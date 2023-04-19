@@ -5,8 +5,8 @@ a command-line interface in Node.js using typescript
 ## Run Project
 
 npm install
-ts-node ./dist/app --filter=ry
-ts-node ./dist/app --count
+ts-node ./src/app --filter=ry
+ts-node ./src/app --count
 
 (or with building)
 npm run build
